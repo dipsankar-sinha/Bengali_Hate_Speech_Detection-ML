@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bengali ASR and Hate Speech Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #f0f2f5;
+        }
+        .container {
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="file"],
+        input[type="text"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #e9ecef;
+            color: #333;
+        }
+        .error {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Bengali ASR & Hate Speech Detection</h2>
+
+        <!-- Input for Text -->
+        <div class="input-group">
+            <label for="textInput">Enter Text:</label>
+            <input type="text" id="textInput" placeholder="Enter text for analysis">
+        </div>
+
+        <!-- Input for Audio File -->
+        <div class="input-group">
+            <label for="audioInput">Upload Audio (WAV only):</label>
+            <input type="file" id="audioInput" accept="audio/wav">
+        </div>
+
+        <!-- Buttons for Submitting -->
+        <button onclick="processText()">Analyze Text</button>
+        <button onclick="transcribeAudio()">Transcribe Audio</button>
+
+        <!-- Display Result -->
+        <div class="result" id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
