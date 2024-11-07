@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from transformers import WhisperForConditionalGeneration, WhisperFeatureExtractor
 from nltk.corpus import stopwords
 from bangla_stemmer.stemmer.stemmer import BanglaStemmer
@@ -11,13 +12,14 @@ import librosa
 import pickle
 
 app = Flask(__name__)
-
+CORS(app)  # This will allow all domains by default
+#CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})  # Replace with your client URL
 
 nltk.download('punkt')
 nltk.download('punkt_tab')
 nltk.download('stopwords')
 
-### Data Cleaning and Normalisation of the text for hate speech detection###
+### Data Cleaning and Normalisation of the text for hate speech detection ###
 
 # Initialize stopwords and stemmer for Bengali
 
@@ -146,10 +148,11 @@ def detect():
 
 @app.route('/process_input', methods=['POST'])
 def process_input():
-    # Check if the request contains text
-    if 'text' in request.form:
-        text = request.form['text']
-        response_detect = requests.post(DETECT_URI, json=jsonify({'transcription': text}))
+
+    # Check if the request contains JSON text input
+    if request.is_json:
+        transcription_json = request.get_json()
+        response_detect = requests.post(DETECT_URI, json=transcription_json)
         return response_detect.json()
 
     # Check if the request contains an audio file
@@ -166,7 +169,7 @@ def process_input():
         if response_transcribe.ok:
             response_detect = requests.post(DETECT_URI, json=response_transcribe.json())
             return response_detect.json() if response_detect.ok else jsonify({"error": "Failed to call the API"}), 500
-
+        
         return jsonify({"error": "Transcription API failed"}), 500
 
     # No valid input found

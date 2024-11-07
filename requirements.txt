@@ -13,3 +13,4 @@ nltk
 bangla_stemmer
 sounddevice
 wavio
+flask-cors
