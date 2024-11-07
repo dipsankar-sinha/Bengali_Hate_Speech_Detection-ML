@@ -1,0 +1,15 @@
+flask
+scikit-learn
+transformers
+librosa
+torch
+torchaudio
+torchvision
+pandas
+numpy
+matplotlib
+scipy
+nltk
+bangla_stemmer
+sounddevice
+wavio
