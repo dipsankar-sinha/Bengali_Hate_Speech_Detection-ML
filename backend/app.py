@@ -91,7 +91,7 @@ speech_model.eval()  # Important for inference
 # Load the Feature Extractor
 feature_extractor = WhisperFeatureExtractor.from_pretrained(model_path)
 
-@app.route('/transcribe', methods=['GET','POST'])
+@app.route('/transcribe', methods=['POST'])
 def transcribe_audio():
     try:
         # Get the uploaded audio file
