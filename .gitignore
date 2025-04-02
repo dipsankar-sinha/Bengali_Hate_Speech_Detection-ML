@@ -1,3 +1,6 @@
+/.idea
+/.venv
 /backend/model
 /backend/datasets
 /documentation
+/backend/test
